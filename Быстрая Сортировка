@@ -1,0 +1,62 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+void quickSort(int arr[], int left, int right) {
+  int i = left, j = right;
+  int tmp;
+  int pivot = arr[(left + right) / 2];
+  if (pivot % 2 == 0){
+    while (i <= j) {
+      while (arr[i] % 2 == 0 and arr[i] < pivot )
+        i++;
+      while (arr[j]%2!=0 or ( arr[j] % 2 == 0 and arr[j] > pivot ))
+        j--;
+      if (i <= j) {
+        tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+        i++;
+        j--;
+      }
+      }
+      }
+  else if (pivot % 2 != 0){
+    while (i <= j) {
+      while (arr[i] % 2 == 0 or(arr[i] % 2 != 0 and arr[i] > pivot ))
+        i++;
+      while (arr[j] % 2 != 0 and arr[j] < pivot )
+        j--;
+      if (i <= j) {
+        tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+        i++;
+        j--;
+      }
+      }
+      }
+  if (left < j)
+    quickSort(arr, left, j);
+  if (i < right)
+    quickSort(arr, i, right);
+}
+ 
+int main() {
+  int i,n;
+  cin >> n;
+  int arr[n];
+  srand(time(0));
+  for (i=0;i<n;i++){
+    arr[i]= rand() % 10 + 1;
+  }
+  for (i=0; i<n;i++){
+    cout<<arr[i];
+    cout<< " ";
+  }
+  quickSort(arr, 0, n-1);
+  cout<<"\n";
+  for (i= 0; i < n;i++){
+    cout<<arr[i];
+    cout<< " ";
+  }
+}
